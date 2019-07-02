@@ -4,7 +4,7 @@ class JavaLinesCounter:
         self.fileName = targetFileName
         self.targetFile = open(self.fileName, 'r')
         self.lines = 0
-        self.__readingCommentBlock = False
+        self.readingCommentBlock = False
 
     def printResult(self):
         self.countLines()
@@ -21,7 +21,7 @@ class JavaLinesCounter:
             return False
         if self.isCommentLine(currentLine):
             return False
-        return True
+        return not self.readingCommentBlock
 
     def isCommentLine(self, currentLine):
         if currentLine.startswith('//'):
@@ -29,20 +29,18 @@ class JavaLinesCounter:
         return self.isCommentBlock(currentLine)
 
     def isCommentBlock(self, currentLine):
-        if self.isBeginOfCommentBlock(currentLine):
-            self.__readingCommentBlock = True
+        self.isBeginOfCommentBlock(currentLine)
         if self.isEndOfCommentBlock(currentLine):
-            self.__readingCommentBlock = False
-        return self.__readingCommentBlock
+            return True
+        return self.readingCommentBlock
 
     def isBeginOfCommentBlock(self, currentLine):
         if currentLine.startswith('/*'):
-            return True
-        return False
+            self.readingCommentBlock = True
 
     def isEndOfCommentBlock(self, currentLine):
-        if currentLine.endswith('*/'):
-            self.lines -= 1
+        if self.readingCommentBlock and currentLine.endswith('*/'):
+            self.readingCommentBlock = False
             return True
         return False
 

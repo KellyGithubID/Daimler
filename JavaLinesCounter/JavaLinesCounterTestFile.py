@@ -4,14 +4,18 @@ from JavaLinesCounter import *
 
 class TestJavaLinesCounter(unittest.TestCase):
     def setUp(self) -> None:
-        testFile = './test'
+        testFile = './test (11 Lines)'
         self.linesCounterForTest = JavaLinesCounter(testFile)
-        self.assertEqual('./test', self.linesCounterForTest.fileName)
-        self.assertEqual('./test', self.linesCounterForTest.targetFile.name)
+        self.assertEqual('./test (11 Lines)', self.linesCounterForTest.fileName)
+        self.assertEqual('./test (11 Lines)', self.linesCounterForTest.targetFile.name)
 
     def testCountLines(self):
         self.linesCounterForTest.countLines()
         self.assertEqual(11, self.linesCounterForTest.lines)
+        testFile = './test (6 Lines).java'
+        self.linesCounterForTest = JavaLinesCounter(testFile)
+        self.linesCounterForTest.countLines()
+        self.assertEqual(6, self.linesCounterForTest.lines)
 
     def testIsCodeLine(self):
         self.assertTrue(self.linesCounterForTest.isCodeLine('int i = 0'))

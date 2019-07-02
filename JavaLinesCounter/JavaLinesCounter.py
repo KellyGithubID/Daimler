@@ -46,5 +46,5 @@ class JavaLinesCounter:
 
 
 if __name__ == '__main__':
-    obj = JavaLinesCounter('./test')
+    obj = JavaLinesCounter('./test (6 Lines).java')
     obj.printResult()

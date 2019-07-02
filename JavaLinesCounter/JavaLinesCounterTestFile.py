@@ -6,6 +6,8 @@ class TestJavaLinesCounter(unittest.TestCase):
     def setUp(self) -> None:
         testFile = './test'
         self.linesCounterForTest = JavaLinesCounter(testFile)
+        self.assertEqual('./test', self.linesCounterForTest.fileName)
+        self.assertEqual('./test', self.linesCounterForTest.targetFile.name)
 
     def testCountLines(self):
         self.linesCounterForTest.countLines()

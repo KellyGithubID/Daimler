@@ -15,6 +15,7 @@ class JavaLinesCounter:
             currentLine = currentLine.strip()
             if self.isCodeLine(currentLine):
                 self.lines += 1
+        self.targetFile.close()
 
     def isCodeLine(self, currentLine):
         if len(currentLine) == 0:

@@ -63,6 +63,7 @@ class BinarySearchTest(unittest.TestCase):
         test_search = BinarySearch(odd_numbers_array, target_number)
         self.assertEqual(-1, test_search.search_index_of_target_number())
 
+        
 
 if __name__ == '__main__':
     unittest.main()
